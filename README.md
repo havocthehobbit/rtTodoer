@@ -6,6 +6,12 @@
 ## basic usage
 ![image](https://user-images.githubusercontent.com/12083103/224010283-984346c9-eae9-4382-a458-0481da9b9e80.png)
 
+### `requirements`
+
+    * Reactjs dev enviroment 
+        * recomend installing react-create-app and instancing project folder,and copying over contents or using this git clone and running npm install 
+    
+
 ### `example 1`
 #### `from jsx file import Todo component`
 import {Todo} from "./components/Todo/Todo";
