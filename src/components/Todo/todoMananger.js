@@ -45,7 +45,13 @@ export class TodoMananger extends Component {
 
         tt.setupInitProps()
 
-        
+        if (tt.props.data){ 
+
+        }
+
+        if (tt.props.title){ 
+
+        }
     }
         
 
@@ -67,6 +73,33 @@ export class TodoMananger extends Component {
     count=0
     hasAdd=false
     todos_added=[]
+
+    data={
+        title : "new",
+        count : 0,
+        todos : [ ],
+        saveType : "localStorage",
+    }
+
+    saveDataFn=()=>{
+        let tt=this
+
+        if (tt.saveType==="localStorage"){
+            
+        }
+
+    }
+
+    loadDataFn=()=>{
+        let tt=this
+
+        if (tt.saveType==="localStorage"){
+
+        }
+        
+    }
+
+
 
     setup={
         tabtype : "vert"
