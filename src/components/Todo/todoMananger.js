@@ -2,15 +2,28 @@ import { useEffect, useState,Component } from "react"
 
 import {Todo} from "./Todo";
 
-
+/*
+    props
+        style ( obj )
+        setup ( obj )
+            tabtype ( string ) : 
+                "hor" : make tabsLists horrizontal
+                "vert" : make tabsLists vertical
+        hasAdd ()
+            shows add new list button, so that more todo lists can be added
+        ...
+    
+    <children>
+        <Todo>
+*/
 export class TodoMananger extends Component {
     constructor(props) {
         super(props);
 
         var tt=this
         var initState={ addItemFn : (txt)=>{} , newToDoListTitle : "" }
-        if (props.initItems){
-            //initState.items=props.initItems
+        if (props.items){
+            
         }  
         
         tt.setupInitHasAdd()
@@ -85,7 +98,7 @@ export class TodoMananger extends Component {
 
     saveFn=(...params)=>{
         if (params.length===1){
-            
+
 
 
         }
