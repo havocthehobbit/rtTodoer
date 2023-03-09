@@ -1,6 +1,6 @@
 import { useEffect, useState} from "react"
-import logo from "./logo.svg";
 import "./App.css";
+
 import {TodoMananger} from "./components/Todo/todoMananger";
 import {Todo} from "./components/Todo/Todo";
 
