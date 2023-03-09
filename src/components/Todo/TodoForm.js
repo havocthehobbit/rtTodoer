@@ -36,7 +36,7 @@ export class TodoForm extends Component {
                         
                         <label style={{color : 'grey'}}>title : </label>
                         <input 
-                            style={{ width : 100, height : 20,borderRadius : 5}}
+                            style={{ width : 135, height : 20,borderRadius : 5}}
                             value={tt.state.itemText}
                             onChange={(e)=>{
                                 tt.setState({ itemText : e.target.value})

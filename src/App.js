@@ -16,7 +16,8 @@ function App() {
   })
 
   let styleTodolists={position : "relative",width : 300,listHeight : 300 ,
-                        listBackground : "lightblue"
+                        listBackground : "lightblue",fontSize : 18,
+                        labelWidth : 200,labelOverflow : "hidden",labelColor : "black",labelFontSize : 20
                       }
 
   return (
@@ -31,7 +32,7 @@ function App() {
           <h2
             style={{ padding : 2, margin : 2}}
           >ToDo</h2>          
-          <TodoMananger style={ { position : "relative" , width : undefined, background : "",}} 
+          <TodoMananger title={"Main"} style={ { position : "relative" , width : undefined, background : "",}} 
                         hasAdd={false} setup={{ tabtype : "hor" }} 
           >
             <Todo style={styleTodolists} title={"shopping list"} items={[{name : "milk", status : false } , {name : "bread", status : false }  ,{name : "eggss", status : false } ]}  />  

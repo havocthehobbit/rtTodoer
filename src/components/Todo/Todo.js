@@ -8,6 +8,7 @@ import {TodoForm} from "./TodoForm";
         listHeight : height of list box        
         listBackground : change background color
         // todo : listColor : 
+         labelWidth : 200,labelOverflow : "hidden",labelColor : "black",labelFontSize : 20
 */
 export class Todo extends Component {
     constructor(props) {
@@ -40,6 +41,7 @@ export class Todo extends Component {
     }
 
     style={}
+    labelStyle={}
 
     items=[]
     
@@ -52,6 +54,21 @@ export class Todo extends Component {
         let def_style={padding  : 5,  borderRadius : 10,position : "relative", listBackground : "white"}
         let o_style=tt.style
         let style={ ...def_style,...o_style }
+
+        let def_labelStyle={ position: "relative",width : style.width, 
+                                height : style.listHeight,
+                                background : style.listBackground,
+                                color : style.listColor,overflow : "auto"
+        }
+        let o_labelStyle=tt.labelStyle
+        let labelStyle={ ...def_labelStyle,...o_labelStyle }
+        if (style.labelWidth){ labelStyle.labelWidth=style.labelWidth  }
+        if (style.labelOverflow){ labelStyle.labelOverflow=style.labelOverflow  }
+        if (style.labelBackground){ labelStyle.labelBackground=style.labelBackground  }
+        if (style.labelColor){ labelStyle.labelColor=style.labelColor  }
+        if (style.labelFontSize){ labelStyle.labelFontSize=style.labelFontSize  }
+        if (style.labelFont){ labelStyle.labelFont=style.labelFont  }
+        
 
         var title
         if (tt.props.title){
@@ -70,12 +87,7 @@ export class Todo extends Component {
                             addItemFn={tt.state.addItemFn} 
                         />     
                         <TodoList 
-                            style={{ position: "relative",width : style.width, 
-                                        height : style.listHeight,
-                                        background : style.listBackground,
-                                        color : style.listColor,overflow : "auto"
-                        
-                            }} 
+                            style={labelStyle} 
                             setAddItemFn={ tt.setStateAddItemFn } 
                             items={ tt.items } 
                          />
