@@ -28,7 +28,13 @@ function App() {
     }
 
     if (loaddataSuccess){
+      dataPrev.current=loaddataSTR
+      data.current=loaddataSTR
 
+
+      isLoading.current=false
+    }else{
+      isLoading.current=false
     }
 
     //isLoading.current=false
