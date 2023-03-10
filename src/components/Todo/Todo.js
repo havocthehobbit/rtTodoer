@@ -38,6 +38,49 @@ export class Todo extends Component {
             tt.items=tt.props.items
         }   
 
+
+        if (tt.props.data){ 
+            if (tt.props.data.current===undefined){                 
+                //tt.props.data=tt.data                
+                //console.log("data log" ,tt.props.data)
+            }else{
+                //tt.props.data.current=tt.data                
+                //console.log("data log" , tt.props.data)
+            }   
+            
+        }
+
+    }
+
+    componentDidUpdate(prevProps){
+        var tt=this
+        //console.log()
+        
+        if (tt.props.data){ 
+            if (tt.props.data.current===undefined){                 
+                //tt.props.data=tt.data                
+                //console.log("data log todo didup" , tt.props.data)
+                tt.updateDataToRootMananger(tt.props.data)
+            }else{
+                //tt.props.data.current=tt.data                
+                //console.log("data log todo didup" , tt.props.data.current)
+                tt.updateDataToRootMananger(tt.props.data.current)
+            }   
+            
+        }
+    }
+
+    updateDataToRootMananger=(data)=>{
+        var tt=this
+        if (data.todos!==undefined){            
+            
+            data.todos.forEach((r,i)=>{
+                if (r.title===tt.props.title){
+                    //console.log( "title : ",tt.props.title)
+                    r.data={ items : tt.items }
+                }
+            })
+        }
     }
 
     style={}
@@ -77,6 +120,18 @@ export class Todo extends Component {
             })()
         }
 
+        
+        if (tt.props.data){ 
+            if (tt.props.data.current===undefined){                 
+                //tt.props.data=tt.data                
+                //console.log("data log todo..." , tt.props.data)
+            }else{
+                //tt.props.data.current=tt.data                
+                //console.log("data log todo..." , tt.props.data)
+            }   
+            
+        }
+
         return (
                     <div
                         style={style}
@@ -90,6 +145,7 @@ export class Todo extends Component {
                             style={labelStyle} 
                             setAddItemFn={ tt.setStateAddItemFn } 
                             items={ tt.items } 
+                            data={tt.props.data}
                          />
                     </div>
             )

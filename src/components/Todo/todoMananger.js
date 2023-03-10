@@ -9,6 +9,7 @@ import {Todo} from "./Todo";
             tabtype ( string ) : 
                 "hor" : make tabsLists horrizontal
                 "vert" : make tabsLists vertical
+            showDataText ( bool )
         hasAdd ()
             shows add new list button, so that more todo lists can be added
         ...
@@ -21,7 +22,7 @@ export class TodoMananger extends Component {
         super(props);
 
         var tt=this
-        var initState={ addItemFn : (txt)=>{} , newToDoListTitle : "" }
+        var initState={ addItemFn : (txt)=>{} , newToDoListTitle : "" ,data : {} }
         if (props.items){
             
         }  
@@ -46,11 +47,19 @@ export class TodoMananger extends Component {
         tt.setupInitProps()
 
         if (tt.props.data){ 
-
+            if (tt.props.data.current===undefined){ 
+                
+                tt.props.data=tt.data
+                
+            }else{
+                tt.props.data.current=tt.data                
+                //console.log("data log" , tt.data)
+            }   
+            
         }
 
-        if (tt.props.title){ 
-
+        if (tt.props.title!==undefined){ 
+            tt.data.title=tt.props.title
         }
     }
         
@@ -63,6 +72,8 @@ export class TodoMananger extends Component {
         tt.setupInitHasAdd()
 
         tt.setupInitProps()
+
+        
     }
     componentWillUpdate=()=>{
         var tt=this
@@ -78,6 +89,7 @@ export class TodoMananger extends Component {
         title : "new",
         count : 0,
         todos : [ ],
+        type : "TodoMananger",
         saveType : "localStorage",
     }
 
@@ -149,16 +161,38 @@ export class TodoMananger extends Component {
         let style={ ...def_style,...o_style }
 
 
-        
+         
         let all_children=(()=>{
             var arr=[]
+            tt.data.todos=[]
 
             var contadd=(cmpt,key)=>{
                 var nc
                 
-                if (true){
+                if (cmpt.type!==undefined){
+                    if (cmpt.type.name==="Todo"){
+                        //console.log( "cmpt" , cmpt)
 
+                        
+                        
+                        let nd={ type : "Todo", data : {} }
+                        if (cmpt.props!==undefined){
+                            nd.props={ ...cmpt.props}
+                            if (nd.props.data!==undefined){
+                                delete nd.props.data
+                            }
+                            
+
+                            if (cmpt.props.title!==undefined){
+                                nd.title=cmpt.props.title
+                            }
+                        }
+                        
+                        tt.data.todos.push(nd)
+
+                    }
                 }
+                
 
                 let style
                 style={ position : "relative",display : "inline" , width : 400,overflow : "hidden",height : undefined,}
@@ -190,6 +224,7 @@ export class TodoMananger extends Component {
                     contadd(r, keyI)
                 )
 
+                
 
                 keyI++
             })
@@ -234,12 +269,31 @@ export class TodoMananger extends Component {
             })()
         }
 
+        let dataText
+        if (tt.setup.showDataText!==undefined){
+            if (tt.setup.showDataText===true){
+                dataText=(()=>{
+
+                    return (
+                        <div>
+                            <textarea 
+                                style={{ width : 600 , height : 400}}
+                                value={JSON.stringify(tt.data,null,2)}
+                                onChange={(e)=>{}}
+                            />
+                        </div>
+                    )
+                })()
+            }
+        }
+
         return (
                     <div
                         style={style}
                     >     
                         {AddToDoList}                                           
-                        {all_children}                        
+                        {all_children}    
+                        {dataText}                    
                     </div>
             )
     }

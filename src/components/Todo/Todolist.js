@@ -23,7 +23,18 @@ export class TodoList extends Component {
         tt.props.setAddItemFn(tt.addItem)
         if (tt.props.items){
             tt.setState( { items : tt.props.items })
-        }        
+        }   
+        
+        if (tt.props.data){ 
+            if (tt.props.data.current===undefined){                 
+                //tt.props.data=tt.data                
+                //console.log("data log list..." , tt.props.data)
+            }else{
+                //tt.props.data.current=tt.data                
+                //console.log("data log list..." , tt.props.data)
+            }   
+            
+        }
     }
 
     componentDidUpdate = (prevProps)=>{
@@ -33,6 +44,17 @@ export class TodoList extends Component {
                 tt.setState( { items : tt.props.items })
             }
         }        
+
+        if (tt.props.data){ 
+            if (tt.props.data.current===undefined){                 
+                //tt.props.data=tt.data                
+                //console.log("data log list  didupd..." , tt.props.data)
+            }else{
+                //tt.props.data.current=tt.data                
+                //console.log("data log list didupd..." , tt.props.data)
+            }   
+            
+        }
     }
 
     style={}
